@@ -21,7 +21,7 @@ public class NeuralNetwork
     //lista neuronów każdej warstwy
     public List<List<Neuron>> network;
 
-    public NeuralNetwork(double[] inputs, double[] outputs, int layers, int[] numberOfNeuronsForLayer, double learningParamB, double learningParamU, int lowerBound, int upperBound)
+    public NeuralNetwork(double[] inputs, double[] outputs, int layers, int[] numberOfNeuronsForLayer, double learningParamB, double learningParamU)
     {
         this.inputs = inputs;
         this.outputs = outputs;
@@ -29,33 +29,37 @@ public class NeuralNetwork
         this.numberOfNeuronsForLayer = numberOfNeuronsForLayer;
         this.learningParamB = learningParamB;
         this.learningParamU = learningParamU;
-        this.network = new List<List<Neuron>>();
+    }
 
+    public void CreateNetwork()
+    {
+        this.network = new List<List<Neuron>>();
         for (int layerNumber = 0; layerNumber < layers; layerNumber++)
         {
             network.Add(new List<Neuron>());
             for (int neuronNumber = 0; neuronNumber < numberOfNeuronsForLayer[layerNumber]; neuronNumber++)
             {
+                network[layerNumber].Add(new Neuron());
+            }
+        }
+    }
+
+    public void GenerateWeights(int lowerBound, int upperBound)
+    {
+        for (int layerNumber = 0; layerNumber < network.Count; layerNumber++)
+        {
+            for (int neuronNumber = 0; neuronNumber < network[layerNumber].Count; neuronNumber++)
+            {
                 if (layerNumber == 0)
                 {
-                    network[layerNumber].Add(new Neuron(inputs.Length + 1, lowerBound, upperBound));
-                    network[layerNumber][neuronNumber].CalculateSumOfTheProduct(inputs);
-                    network[layerNumber][neuronNumber].ActivationFunction(learningParamB);
+                    network[layerNumber][neuronNumber].GenerateWeights(inputs.Length, lowerBound, upperBound);
                 }
                 else
                 {
-                    network[layerNumber].Add(new Neuron(network[layerNumber - 1].Count + 1, lowerBound, upperBound));
-                    double[] layerinputs = new double[network[layerNumber - 1].Count];
-                    for (int i = 0; i < network[layerNumber - 1].Count; i++)
-                    {
-                        layerinputs[i] = network[layerNumber - 1][i].neuronValue;
-                    }
-                    network[layerNumber][neuronNumber].CalculateSumOfTheProduct(layerinputs);
-                    network[layerNumber][neuronNumber].ActivationFunction(learningParamB);
+                    network[layerNumber][neuronNumber].GenerateWeights(network[layerNumber - 1].Count, lowerBound, upperBound);
                 }
             }
         }
     }
     
-    public void 
 }

@@ -11,12 +11,16 @@ public class Neuron
     // wartość wyjściowa neuronu
     public double neuronValue;
 
-    public Neuron(int numberOfWeights, int lowerBound, int upperBound)
+    public Neuron()
     {
-        this.weights = new double[numberOfWeights];
-        for (int i = 0; i < weights.Length; i++)
+    }
+
+    public void GenerateWeights(int inputsCount, int lowerBound, int upperBound)
+    {
+        this.weights = new double[inputsCount + 1];
+        for (int inputNumber = 0; inputNumber < inputsCount; inputNumber++)
         {
-            this.weights[i] = random.NextDouble() * (upperBound - lowerBound) + lowerBound;
+            this.weights[inputNumber] = random.NextDouble() * (upperBound - lowerBound) + lowerBound;
         }
     }
 

@@ -12,10 +12,20 @@ static class Program
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         //Application.Run(new Form1());
-        NeuralNetwork network = new NeuralNetwork([1, 0, 3], [2, 0], 3, [3, 3, 1], 1, 0.3, -5, 5);
-        foreach (var neuron in network.network)
+        NeuralNetwork neuralNetwork = new NeuralNetwork([1, 2, 3, 4], [1, 3], 5, [4, 3, 4, 5, 1], 1, 0.3);
+        neuralNetwork.CreateNetwork();
+        foreach (var neuron in neuralNetwork.network)
         {
             Console.WriteLine(neuron.Count);
+        }
+        neuralNetwork.GenerateWeights(-5,5);
+
+        foreach (var layer in neuralNetwork.network)
+        {
+            foreach (var neuron in layer)
+            {
+                Console.WriteLine(neuron.weights.Length);
+            }
         }
     }
 }
