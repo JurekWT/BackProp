@@ -11,15 +11,11 @@ static class Program
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
-        Application.Run(new Form1());
-        Neuron neuron = new Neuron();
-        int[] inputs = new int[2] { 1, 0 };
-        neuron.GenerateWeights(inputs.Length + 1, -5, 5);
-        neuron.CalculateSumOfTheProduct(inputs);
-        foreach (var weight in neuron.weights)
+        //Application.Run(new Form1());
+        NeuralNetwork network = new NeuralNetwork([1, 0, 3], [2, 0], 3, [3, 3, 1], 1, 0.3, -5, 5);
+        foreach (var neuron in network.network)
         {
-            Console.WriteLine(weight.ToString());
+            Console.WriteLine(neuron.Count);
         }
-        Console.WriteLine(neuron.sumOfTheProduct);
     }
 }
