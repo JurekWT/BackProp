@@ -1,3 +1,6 @@
+using System.Text.Json;
+using Microsoft.VisualBasic.Devices;
+
 namespace BackProp;
 
 public class NeuralNetwork
@@ -100,7 +103,6 @@ public class NeuralNetwork
         ProcessInputs(inputs);
         return GetLayerOutputs(network.Count - 1);
     }
-    
 
     public void BackPropagation(double[] inputs, double[] expectedOutputs)
     {
@@ -158,6 +160,18 @@ public class NeuralNetwork
                 neuron.weights[neuron.weights.Length - 1] += learningParamU * neuron.delta; //aktualizacja biasu
             }
         }
+    }
+
+    public void SaveWeights(string fileName)
+    {
+        string json = JsonSerializer.Serialize(network);
+        File.WriteAllText(fileName, json);
+    }
+
+    public void LoadWeights(string fileName)
+    {
+        string json = File.ReadAllText(fileName);
+        network = JsonSerializer.Deserialize<List<List<Neuron>>>(json);
     }
     
 }

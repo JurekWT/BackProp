@@ -24,16 +24,76 @@ partial class Form1
     #region Windows Form Designer generated code
 
     /// <summary>
-    ///  Required method for Designer support - do not modify
-    ///  the contents of this method with the code editor.
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "Form1";
+        buttonZadanie1 = new System.Windows.Forms.Button();
+        buttonZadanie2 = new System.Windows.Forms.Button();
+        buttonZadanie3 = new System.Windows.Forms.Button();
+        label1 = new System.Windows.Forms.Label();
+        SuspendLayout();
+        // 
+        // buttonZadanie1
+        // 
+        buttonZadanie1.Cursor = System.Windows.Forms.Cursors.Hand;
+        buttonZadanie1.Location = new System.Drawing.Point(61, 51);
+        buttonZadanie1.Name = "buttonZadanie1";
+        buttonZadanie1.Size = new System.Drawing.Size(264, 84);
+        buttonZadanie1.TabIndex = 0;
+        buttonZadanie1.Text = "Zadanie 1";
+        buttonZadanie1.UseVisualStyleBackColor = true;
+        buttonZadanie1.Click += buttonZadanie1_Click;
+        // 
+        // buttonZadanie2
+        // 
+        buttonZadanie2.Cursor = System.Windows.Forms.Cursors.Hand;
+        buttonZadanie2.Location = new System.Drawing.Point(61, 141);
+        buttonZadanie2.Name = "buttonZadanie2";
+        buttonZadanie2.Size = new System.Drawing.Size(264, 84);
+        buttonZadanie2.TabIndex = 1;
+        buttonZadanie2.Text = "Zadanie 2";
+        buttonZadanie2.UseVisualStyleBackColor = true;
+        // 
+        // buttonZadanie3
+        // 
+        buttonZadanie3.Cursor = System.Windows.Forms.Cursors.Hand;
+        buttonZadanie3.Location = new System.Drawing.Point(61, 231);
+        buttonZadanie3.Name = "buttonZadanie3";
+        buttonZadanie3.Size = new System.Drawing.Size(264, 84);
+        buttonZadanie3.TabIndex = 2;
+        buttonZadanie3.Text = "Zadanie 3";
+        buttonZadanie3.UseVisualStyleBackColor = true;
+        // 
+        // label1
+        // 
+        label1.Location = new System.Drawing.Point(61, 349);
+        label1.Name = "label1";
+        label1.Size = new System.Drawing.Size(264, 45);
+        label1.TabIndex = 3;
+        label1.Text = "Jerzy Tymofiejczyk\r\nMIW 2025";
+        label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // Form1
+        // 
+        AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        ClientSize = new System.Drawing.Size(390, 424);
+        Controls.Add(label1);
+        Controls.Add(buttonZadanie3);
+        Controls.Add(buttonZadanie2);
+        Controls.Add(buttonZadanie1);
+        StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+        Text = " Propagacja wsteczna MIW 2025";
+        ResumeLayout(false);
     }
+
+    private System.Windows.Forms.Button buttonZadanie2;
+    private System.Windows.Forms.Button buttonZadanie3;
+    private System.Windows.Forms.Label label1;
+
+    private System.Windows.Forms.Button buttonZadanie1;
 
     #endregion
 }
