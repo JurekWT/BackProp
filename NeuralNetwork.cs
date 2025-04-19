@@ -104,20 +104,6 @@ public class NeuralNetwork
         return GetLayerOutputs(network.Count - 1);
     }
 
-    public void BackPropagation(double[] inputs, double[] expectedOutputs)
-    {
-        ProcessInputs(inputs);
-        for (int output = 0; output < network[network.Count - 1].Count; output++) // wyliczenie błędów i pochodnej w warstwie wyjściowej
-        {
-            var neuron = network[network.Count - 1][output];
-            var adjustment = learningParamU * (expectedOutputs[output] - neuron.neuronValue);
-            neuron.delta = adjustment * (learningParamB * neuron.neuronValue * (1 - neuron.neuronValue));
-        }
-
-        ComputeDeltas();
-        UpdateWeights(inputs);
-    }
-
     private void ComputeDeltas()
     {
         for (int layerNumber = network.Count - 2; layerNumber >= 0; layerNumber--) //przechodzimy przez warstwy od tyłu z pominięciem ostatniej
@@ -172,6 +158,20 @@ public class NeuralNetwork
     {
         string json = File.ReadAllText(fileName);
         network = JsonSerializer.Deserialize<List<List<Neuron>>>(json);
+    }
+    
+    public void BackPropagation(double[] inputs, double[] expectedOutputs)
+    {
+        ProcessInputs(inputs);
+        for (int output = 0; output < network[network.Count - 1].Count; output++) // wyliczenie błędów i pochodnej w warstwie wyjściowej
+        {
+            var neuron = network[network.Count - 1][output];
+            var adjustment = learningParamU * (expectedOutputs[output] - neuron.neuronValue);
+            neuron.delta = adjustment * (learningParamB * neuron.neuronValue * (1 - neuron.neuronValue));
+        }
+
+        ComputeDeltas();
+        UpdateWeights(inputs);
     }
     
 }

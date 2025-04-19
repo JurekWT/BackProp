@@ -84,6 +84,8 @@ partial class Form1
         Controls.Add(buttonZadanie3);
         Controls.Add(buttonZadanie2);
         Controls.Add(buttonZadanie1);
+        FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+        MaximizeBox = false;
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         Text = " Propagacja wsteczna MIW 2025";
         ResumeLayout(false);
