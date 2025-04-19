@@ -3,25 +3,28 @@ namespace BackProp;
 public class NeuralNetwork
 {
     
-    public double[] inputs; //wejścia sieci neuronowej
-    public double[] outputs; //wyjścia sieci neuronowej
+    //public double[] inputs; //wejścia sieci neuronowej
+    public int inputsCount;
+    //public double[] outputs; //wyjścia sieci neuronowej
+    public int outputsCount;
     public int layers; //ilość warstw
     public int[] numberOfNeuronsForLayer; //ilość neuronów w każdej warstwie
     public double learningParamB; //parametr uczenia B
     public double learningParamU; //parametr uczenia u
     public List<List<Neuron>> network; //lista neuronów każdej warstwy
 
-    public NeuralNetwork(double[] inputs, double[] outputs, int layers, int[] numberOfNeuronsForLayer, double learningParamB, double learningParamU)
+    public NeuralNetwork(int inputsCount, int outputsCount, int layers, int[] numberOfNeuronsForLayer, double learningParamB, double learningParamU)
     {
-        this.inputs = inputs;
-        this.outputs = outputs;
+        this.inputsCount = inputsCount;
+        this.outputsCount = outputsCount;
         this.layers = layers;
         this.numberOfNeuronsForLayer = numberOfNeuronsForLayer;
         this.learningParamB = learningParamB;
         this.learningParamU = learningParamU;
+        CreateNetwork();
     }
 
-    public void CreateNetwork() //tworzenie warstw i neuronów w każdej warstwie
+    private void CreateNetwork() //tworzenie warstw i neuronów w każdej warstwie
     {
         this.network = new List<List<Neuron>>();
         for (int layerNumber = 0; layerNumber < layers; layerNumber++)
@@ -42,7 +45,7 @@ public class NeuralNetwork
             {
                 if (layerNumber == 0) //wagi dla pierwszej warstwy
                 {
-                    network[layerNumber][neuronNumber].GenerateWeights(inputs.Length, lowerBound, upperBound);
+                    network[layerNumber][neuronNumber].GenerateWeights(inputsCount, lowerBound, upperBound);
                 }
                 else //wagi każdej kolejnej warstwy
                 {
@@ -52,7 +55,7 @@ public class NeuralNetwork
         }
     }
 
-    public void ProcessInputs() //wprowadzenie wejść do sieci i obliczenie wartości neuronów
+    private void ProcessInputs(double[] input) //przepuszczenie wejść przez sieci i obliczenie wartości neuronów
     {
         double[] hiddenInputs = null;
         for (int layerNumber = 0; layerNumber < network.Count; layerNumber++)
@@ -70,7 +73,7 @@ public class NeuralNetwork
             {
                 if (layerNumber == 0)
                 {
-                    network[layerNumber][neuronNumber].CalculateSumOfTheProduct(inputs);
+                    network[layerNumber][neuronNumber].CalculateSumOfTheProduct(input);
                     
                 }
                 else
@@ -82,14 +85,79 @@ public class NeuralNetwork
         }
     }
 
-    public double[] GetNetworkOutputs() //zwraca wartości neuronów wyjściowych
+    private double[] GetLayerOutputs(int layer) //zwraca wartości neuronów wyjściowych
     {
-        var outputs = new double[network[network.Count - 1].Count];
+        var outputs = new double[network[layer].Count];
         for (int i = 0; i < outputs.Length; i++)
         {
-            outputs[i] = network[network.Count - 1][i].neuronValue;
+            outputs[i] = network[layer][i].neuronValue;
         }
         return outputs;
+    }
+
+    public double[] ProcessInputsGetOutputs(double[] inputs)
+    {
+        ProcessInputs(inputs);
+        return GetLayerOutputs(network.Count - 1);
+    }
+    
+
+    public void BackPropagation(double[] inputs, double[] expectedOutputs)
+    {
+        ProcessInputs(inputs);
+        for (int output = 0; output < network[network.Count - 1].Count; output++) // wyliczenie błędów i pochodnej w warstwie wyjściowej
+        {
+            var neuron = network[network.Count - 1][output];
+            var adjustment = learningParamU * (expectedOutputs[output] - neuron.neuronValue);
+            neuron.delta = adjustment * (learningParamB * neuron.neuronValue * (1 - neuron.neuronValue));
+        }
+
+        ComputeDeltas();
+        UpdateWeights(inputs);
+    }
+
+    private void ComputeDeltas()
+    {
+        for (int layerNumber = network.Count - 2; layerNumber >= 0; layerNumber--) //przechodzimy przez warstwy od tyłu z pominięciem ostatniej
+        {
+            for (int neuronNumber = 0; neuronNumber < network[layerNumber].Count; neuronNumber++)
+            {
+                double sumOfDeltas = 0;
+
+                for (int neuronNextLayer = 0; neuronNextLayer < network[layerNumber + 1].Count; neuronNextLayer ++) //suma delt pomnożonych przez wagi dla następnej warstwy
+                {
+                    sumOfDeltas += network[layerNumber + 1][neuronNextLayer].delta * network[layerNumber + 1][neuronNextLayer].weights[neuronNumber];
+                }
+                var neuron = network[layerNumber][neuronNumber];
+                neuron.delta = sumOfDeltas * (learningParamB * neuron.neuronValue * (1 - neuron.neuronValue));
+            }
+        }
+    }
+
+    private void UpdateWeights(double[] inputs)
+    {
+        for (int layerNumber = 0; layerNumber < network.Count; layerNumber++)
+        {
+            double[] previousOutputs;
+            if (layerNumber == 0)
+            {
+                previousOutputs = inputs;
+            }
+            else
+            {
+                previousOutputs = GetLayerOutputs(layerNumber - 1);
+            }
+
+            foreach (var neuron in network[layerNumber]) //aktualizacja wag
+            {
+                for (int weightNumber = 0; weightNumber < previousOutputs.Length; weightNumber++)
+                {
+                    neuron.weights[weightNumber] += learningParamU * neuron.delta * previousOutputs[weightNumber];
+                }
+                
+                neuron.weights[neuron.weights.Length - 1] += learningParamU * neuron.delta; //aktualizacja biasu
+            }
+        }
     }
     
 }

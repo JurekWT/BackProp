@@ -2,12 +2,13 @@ namespace BackProp;
 
 public class Neuron
 {
-    Random random = new Random();
+    private static Random random = new Random();
     
     
     public double[] weights; // lista wag neuronu, ostatnia to bias (ilość wag = ilość wejść + 1)
     public double sumOfTheProduct; // suma iloczynu wag i wejść
     public double neuronValue; // wartość wyjściowa neuronu
+    public double delta;
 
     public Neuron()
     {
@@ -16,7 +17,7 @@ public class Neuron
     public void GenerateWeights(int inputsCount, int lowerBound, int upperBound)
     {
         this.weights = new double[inputsCount + 1];
-        for (int inputNumber = 0; inputNumber < inputsCount; inputNumber++)
+        for (int inputNumber = 0; inputNumber <= inputsCount; inputNumber++)
         {
             this.weights[inputNumber] = random.NextDouble() * (upperBound - lowerBound) + lowerBound;
         }
@@ -24,6 +25,7 @@ public class Neuron
 
     public void CalculateSumOfTheProduct(double[] inputs)
     {
+        this.sumOfTheProduct = 0;
         for (int i = 0; i < inputs.Length; i++)
         {
             this.sumOfTheProduct += inputs[i] * this.weights[i]; 
