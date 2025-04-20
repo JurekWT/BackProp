@@ -7,6 +7,7 @@ public partial class zad1 : Form
     private int iterations;
     private int lowerBound;
     private int upperBound;
+    private bool inProgess;
     private Dictionary<double[], double[]> inOut;
     private NeuralNetwork neuralNetwork;
     
@@ -44,11 +45,15 @@ public partial class zad1 : Form
 
     private void buttonTrainNetwork_Click(object sender, EventArgs e)
     {
+        inProgess = true;
+        buttonTrainNetwork.Enabled = false;
+        buttonSingleCalc.Enabled = false;
+        buttonStopTraining.Enabled = true;
         iterations = int.Parse(textIterations.Text);
         neuralNetwork.learningParamB = double.Parse(textParamB.Text);
         neuralNetwork.learningParamU = double.Parse(textParamU.Text);
         textOutput.Text = null;
-        for (int i = 0; i < iterations; i++)
+        for (int i = 0; i < iterations && inProgess; i++)
         {
             textOutput.Text = $"Epoka {i+1}" + Environment.NewLine;
             textOutput.Refresh();
@@ -61,6 +66,18 @@ public partial class zad1 : Form
 
         textOutput.Text += Environment.NewLine + "ZAKOŃCZONO TRENOWANIE SIECI NEURONOWEJ";
         textOutput.Refresh();
+        inProgess = false;
+        buttonTrainNetwork.Enabled = true;
+        buttonSingleCalc.Enabled = true;
+        buttonStopTraining.Enabled = false;
+    }
+    
+    private void buttonStopTraining_Click(object sender, EventArgs e)
+    {
+        inProgess = false;
+        buttonTrainNetwork.Enabled = true;
+        buttonSingleCalc.Enabled = true;
+        buttonStopTraining.Enabled = false;
     }
 
     private void buttonGenerateWeights_Click(object sender, EventArgs e)
@@ -88,4 +105,6 @@ public partial class zad1 : Form
             textOutput.Text = $"Zapisano wagi do pliku {saveFileDialog1.FileName}";
         }
     }
+
+
 }

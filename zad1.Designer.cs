@@ -52,6 +52,7 @@ partial class zad1
         buttonTrainNetwork = new System.Windows.Forms.Button();
         saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
         openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+        buttonStopTraining = new System.Windows.Forms.Button();
         groupBox1.SuspendLayout();
         groupBox2.SuspendLayout();
         SuspendLayout();
@@ -253,11 +254,22 @@ partial class zad1
         openFileDialog1.FileName = "openFileDialog1";
         openFileDialog1.Filter = "pliki json|*.json";
         // 
+        // buttonStopTraining
+        // 
+        buttonStopTraining.Location = new System.Drawing.Point(422, 115);
+        buttonStopTraining.Name = "buttonStopTraining";
+        buttonStopTraining.Size = new System.Drawing.Size(172, 40);
+        buttonStopTraining.TabIndex = 5;
+        buttonStopTraining.Text = "Zatrzymaj";
+        buttonStopTraining.UseVisualStyleBackColor = true;
+        buttonStopTraining.Click += buttonStopTraining_Click;
+        // 
         // zad1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(buttonStopTraining);
         Controls.Add(buttonTrainNetwork);
         Controls.Add(buttonSingleCalc);
         Controls.Add(textOutput);
@@ -276,6 +288,8 @@ partial class zad1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button buttonStopTraining;
 
     private System.Windows.Forms.TextBox textBoxLowerBound;
     private System.Windows.Forms.TextBox textBoxUpperBound;
