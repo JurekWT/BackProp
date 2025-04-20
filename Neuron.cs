@@ -1,14 +1,19 @@
+using System.Text.Json.Serialization;
+
 namespace BackProp;
 
 public class Neuron
 {
     private static Random random = new Random();
     
-    
-    public double[] weights; // lista wag neuronu, ostatnia to bias (ilość wag = ilość wejść + 1)
-    public double sumOfTheProduct; // suma iloczynu wag i wejść
-    public double neuronValue; // wartość wyjściowa neuronu
-    public double delta;
+    [JsonInclude]
+    public double[] weights { get; set; } // lista wag neuronu, ostatnia to bias (ilość wag = ilość wejść + 1)
+    [JsonInclude]
+    public double sumOfTheProduct { get; set; } // suma iloczynu wag i wejść
+    [JsonInclude]
+    public double neuronValue { get; set; } // wartość wyjściowa neuronu
+    [JsonInclude]
+    public double delta { get; set; }
 
     public Neuron()
     {

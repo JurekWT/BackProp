@@ -84,8 +84,8 @@ public partial class zad1 : Form
     {
         if (saveFileDialog1.ShowDialog() == DialogResult.OK)
         {
-            neuralNetwork.SaveWeights(openFileDialog1.FileName);
-            textOutput.Text = $"Zapisano wagi do pliku {openFileDialog1.FileName}";
+            neuralNetwork.SaveWeights(saveFileDialog1.FileName);
+            textOutput.Text = $"Zapisano wagi do pliku {saveFileDialog1.FileName}";
         }
     }
 }

@@ -150,14 +150,16 @@ public class NeuralNetwork
 
     public void SaveWeights(string fileName)
     {
-        string json = JsonSerializer.Serialize(network);
+        var options = new JsonSerializerOptions { IncludeFields = true };
+        string json = JsonSerializer.Serialize(network, options);
         File.WriteAllText(fileName, json);
     }
 
     public void LoadWeights(string fileName)
     {
+        var options = new JsonSerializerOptions { IncludeFields = true };
         string json = File.ReadAllText(fileName);
-        network = JsonSerializer.Deserialize<List<List<Neuron>>>(json);
+        network = JsonSerializer.Deserialize<List<List<Neuron>>>(json, options);
     }
     
     public void BackPropagation(double[] inputs, double[] expectedOutputs)
