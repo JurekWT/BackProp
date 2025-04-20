@@ -5,6 +5,8 @@ public partial class zad1 : Form
     private double paramB;
     private double paramU;
     private int iterations;
+    private int lowerBound;
+    private int upperBound;
     private Dictionary<double[], double[]> inOut;
     private NeuralNetwork neuralNetwork;
     
@@ -23,11 +25,6 @@ public partial class zad1 : Form
         };
         neuralNetwork = new NeuralNetwork(2, 1, 2, [2,1], paramB, paramU);
         neuralNetwork.GenerateWeights(-5,5);
-    }
-
-    private void buttonLoadWeights_Click(object sender, EventArgs e)
-    {
-        openFileDialog1.ShowDialog();
     }
 
     private void buttonSingleCalc_Click(object sender, EventArgs e)
@@ -64,5 +61,31 @@ public partial class zad1 : Form
 
         textOutput.Text += Environment.NewLine + "ZAKOŃCZONO TRENOWANIE SIECI NEURONOWEJ";
         textOutput.Refresh();
+    }
+
+    private void buttonGenerateWeights_Click(object sender, EventArgs e)
+    {
+        lowerBound = int.Parse(textBoxLowerBound.Text);
+        upperBound = int.Parse(textBoxUpperBound.Text);
+        neuralNetwork.GenerateWeights(lowerBound, upperBound);;
+    }
+    
+    private void buttonLoadWeights_Click(object sender, EventArgs e)
+    {
+        if (openFileDialog1.ShowDialog() == DialogResult.OK)
+        {
+            neuralNetwork.LoadWeights(openFileDialog1.FileName);
+            textOutput.Text = $"Wczytano wagi z pliku {openFileDialog1.FileName}";
+        }
+    }
+
+
+    private void buttonSaveWeights_Click(object sender, EventArgs e)
+    {
+        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+        {
+            neuralNetwork.SaveWeights(openFileDialog1.FileName);
+            textOutput.Text = $"Zapisano wagi do pliku {openFileDialog1.FileName}";
+        }
     }
 }

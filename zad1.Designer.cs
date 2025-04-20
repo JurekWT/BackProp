@@ -33,6 +33,11 @@ partial class zad1
     {
         groupBox1 = new System.Windows.Forms.GroupBox();
         groupBox2 = new System.Windows.Forms.GroupBox();
+        textBoxUpperBound = new System.Windows.Forms.TextBox();
+        label6 = new System.Windows.Forms.Label();
+        textBoxLowerBound = new System.Windows.Forms.TextBox();
+        label5 = new System.Windows.Forms.Label();
+        buttonGenerateWeights = new System.Windows.Forms.Button();
         buttonSaveWeights = new System.Windows.Forms.Button();
         buttonLoadWeights = new System.Windows.Forms.Button();
         textIterations = new System.Windows.Forms.TextBox();
@@ -47,7 +52,6 @@ partial class zad1
         buttonTrainNetwork = new System.Windows.Forms.Button();
         saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
         openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-        buttonGenerateWeights = new System.Windows.Forms.Button();
         groupBox1.SuspendLayout();
         groupBox2.SuspendLayout();
         SuspendLayout();
@@ -70,6 +74,10 @@ partial class zad1
         // 
         // groupBox2
         // 
+        groupBox2.Controls.Add(textBoxUpperBound);
+        groupBox2.Controls.Add(label6);
+        groupBox2.Controls.Add(textBoxLowerBound);
+        groupBox2.Controls.Add(label5);
         groupBox2.Controls.Add(buttonGenerateWeights);
         groupBox2.Controls.Add(buttonSaveWeights);
         groupBox2.Controls.Add(buttonLoadWeights);
@@ -80,18 +88,63 @@ partial class zad1
         groupBox2.TabStop = false;
         groupBox2.Text = "Wagi";
         // 
+        // textBoxUpperBound
+        // 
+        textBoxUpperBound.Location = new System.Drawing.Point(141, 30);
+        textBoxUpperBound.Name = "textBoxUpperBound";
+        textBoxUpperBound.Size = new System.Drawing.Size(38, 27);
+        textBoxUpperBound.TabIndex = 6;
+        textBoxUpperBound.Text = "3";
+        // 
+        // label6
+        // 
+        label6.Location = new System.Drawing.Point(95, 24);
+        label6.Name = "label6";
+        label6.Size = new System.Drawing.Size(40, 36);
+        label6.TabIndex = 5;
+        label6.Text = "Do";
+        label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // textBoxLowerBound
+        // 
+        textBoxLowerBound.Location = new System.Drawing.Point(55, 30);
+        textBoxLowerBound.Name = "textBoxLowerBound";
+        textBoxLowerBound.Size = new System.Drawing.Size(38, 27);
+        textBoxLowerBound.TabIndex = 4;
+        textBoxLowerBound.Text = "-3";
+        // 
+        // label5
+        // 
+        label5.Location = new System.Drawing.Point(9, 24);
+        label5.Name = "label5";
+        label5.Size = new System.Drawing.Size(40, 36);
+        label5.TabIndex = 3;
+        label5.Text = "Od";
+        label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // buttonGenerateWeights
+        // 
+        buttonGenerateWeights.Location = new System.Drawing.Point(9, 63);
+        buttonGenerateWeights.Name = "buttonGenerateWeights";
+        buttonGenerateWeights.Size = new System.Drawing.Size(170, 30);
+        buttonGenerateWeights.TabIndex = 2;
+        buttonGenerateWeights.Text = "Generuj nowe";
+        buttonGenerateWeights.UseVisualStyleBackColor = true;
+        buttonGenerateWeights.Click += buttonGenerateWeights_Click;
+        // 
         // buttonSaveWeights
         // 
-        buttonSaveWeights.Location = new System.Drawing.Point(9, 139);
+        buttonSaveWeights.Location = new System.Drawing.Point(9, 150);
         buttonSaveWeights.Name = "buttonSaveWeights";
         buttonSaveWeights.Size = new System.Drawing.Size(170, 30);
         buttonSaveWeights.TabIndex = 1;
         buttonSaveWeights.Text = "Zapisz";
         buttonSaveWeights.UseVisualStyleBackColor = true;
+        buttonSaveWeights.Click += buttonSaveWeights_Click;
         // 
         // buttonLoadWeights
         // 
-        buttonLoadWeights.Location = new System.Drawing.Point(9, 103);
+        buttonLoadWeights.Location = new System.Drawing.Point(9, 114);
         buttonLoadWeights.Name = "buttonLoadWeights";
         buttonLoadWeights.Size = new System.Drawing.Size(170, 30);
         buttonLoadWeights.TabIndex = 0;
@@ -200,15 +253,6 @@ partial class zad1
         openFileDialog1.FileName = "openFileDialog1";
         openFileDialog1.Filter = "pliki json|*.json";
         // 
-        // buttonGenerateWeights
-        // 
-        buttonGenerateWeights.Location = new System.Drawing.Point(9, 39);
-        buttonGenerateWeights.Name = "buttonGenerateWeights";
-        buttonGenerateWeights.Size = new System.Drawing.Size(170, 30);
-        buttonGenerateWeights.TabIndex = 2;
-        buttonGenerateWeights.Text = "Generuj nowe";
-        buttonGenerateWeights.UseVisualStyleBackColor = true;
-        // 
         // zad1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -220,6 +264,7 @@ partial class zad1
         Controls.Add(label1);
         Controls.Add(groupBox1);
         FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+        Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
         MaximizeBox = false;
         SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
         StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -227,9 +272,16 @@ partial class zad1
         groupBox1.ResumeLayout(false);
         groupBox1.PerformLayout();
         groupBox2.ResumeLayout(false);
+        groupBox2.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.TextBox textBoxLowerBound;
+    private System.Windows.Forms.TextBox textBoxUpperBound;
+    private System.Windows.Forms.Label label6;
+
+    private System.Windows.Forms.Label label5;
 
     private System.Windows.Forms.Button buttonGenerateWeights;
 
