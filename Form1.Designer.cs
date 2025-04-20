@@ -31,8 +31,8 @@ partial class Form1
     {
         buttonZadanie1 = new System.Windows.Forms.Button();
         buttonZadanie2 = new System.Windows.Forms.Button();
-        buttonZadanie3 = new System.Windows.Forms.Button();
         label1 = new System.Windows.Forms.Label();
+        buttonZadanie3 = new System.Windows.Forms.Button();
         SuspendLayout();
         // 
         // buttonZadanie1
@@ -55,16 +55,7 @@ partial class Form1
         buttonZadanie2.TabIndex = 1;
         buttonZadanie2.Text = "Zadanie 2";
         buttonZadanie2.UseVisualStyleBackColor = true;
-        // 
-        // buttonZadanie3
-        // 
-        buttonZadanie3.Cursor = System.Windows.Forms.Cursors.Hand;
-        buttonZadanie3.Location = new System.Drawing.Point(61, 231);
-        buttonZadanie3.Name = "buttonZadanie3";
-        buttonZadanie3.Size = new System.Drawing.Size(264, 84);
-        buttonZadanie3.TabIndex = 2;
-        buttonZadanie3.Text = "Zadanie 3";
-        buttonZadanie3.UseVisualStyleBackColor = true;
+        buttonZadanie2.Click += buttonZadanie2_Click;
         // 
         // label1
         // 
@@ -75,13 +66,24 @@ partial class Form1
         label1.Text = "Jerzy Tymofiejczyk\r\nMIW 2025";
         label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         // 
+        // buttonZadanie3
+        // 
+        buttonZadanie3.Cursor = System.Windows.Forms.Cursors.Hand;
+        buttonZadanie3.Location = new System.Drawing.Point(61, 231);
+        buttonZadanie3.Name = "buttonZadanie3";
+        buttonZadanie3.Size = new System.Drawing.Size(264, 84);
+        buttonZadanie3.TabIndex = 4;
+        buttonZadanie3.Text = "Zadanie 3";
+        buttonZadanie3.UseVisualStyleBackColor = true;
+        buttonZadanie3.Click += buttonZadanie3_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(390, 424);
-        Controls.Add(label1);
         Controls.Add(buttonZadanie3);
+        Controls.Add(label1);
         Controls.Add(buttonZadanie2);
         Controls.Add(buttonZadanie1);
         FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -91,8 +93,10 @@ partial class Form1
         ResumeLayout(false);
     }
 
-    private System.Windows.Forms.Button buttonZadanie2;
     private System.Windows.Forms.Button buttonZadanie3;
+
+
+    private System.Windows.Forms.Button buttonZadanie2;
     private System.Windows.Forms.Label label1;
 
     private System.Windows.Forms.Button buttonZadanie1;

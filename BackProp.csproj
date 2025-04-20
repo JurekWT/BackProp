@@ -12,6 +12,12 @@
       <Compile Update="zad1.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="zad2.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="zad3.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

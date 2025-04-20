@@ -1,6 +1,6 @@
 namespace BackProp;
 
-public partial class zad1 : Form
+public partial class zad2 : Form
 {
     private double paramB;
     private double paramU;
@@ -11,7 +11,7 @@ public partial class zad1 : Form
     private Dictionary<double[], double[]> inOut;
     private NeuralNetwork neuralNetwork;
     
-    public zad1()
+    public zad2()
     {
         InitializeComponent();
         paramB = double.Parse(textParamB.Text);
@@ -21,12 +21,12 @@ public partial class zad1 : Form
         iterations = int.Parse(textIterations.Text);
         inOut = new Dictionary<double[], double[]>
         {
-            { [0, 0], [0] },
-            { [0, 1], [1] },
-            { [1, 0], [1] },
-            { [1, 1], [0] },
+            { [0, 0], [0, 1] },
+            { [0, 1], [1, 0] },
+            { [1, 0], [1, 0] },
+            { [1, 1], [0, 0] },
         };
-        neuralNetwork = new NeuralNetwork(2, 1, 2, [2,1], paramB, paramU);
+        neuralNetwork = new NeuralNetwork(2, 2, 3, [2,2,2], paramB, paramU);
         neuralNetwork.GenerateWeights(lowerBound,upperBound);
     }
 
@@ -44,13 +44,13 @@ public partial class zad1 : Form
                 textOutput.Text += $" {input[j]} ";
             }
 
-            textOutput.Text += "-";
+            textOutput.Text += "--";
             for (int j = 0; j < expected.Length; j++)
             {
                 textOutput.Text += $" {expected[j]} ";
             }
 
-            textOutput.Text += "-";
+            textOutput.Text += "--";
             for (int j = 0; j < result.Length; j++)
             {
                 textOutput.Text += $" {result[j]:F2} ";
@@ -93,10 +93,10 @@ public partial class zad1 : Form
     private void buttonStopTraining_Click(object sender, EventArgs e)
     {
         inProgess = false;
-        DisableInputs(inProgess);
         buttonTrainNetwork.Enabled = true;
         buttonSingleCalc.Enabled = true;
         buttonStopTraining.Enabled = false;
+        DisableInputs(inProgess);
     }
 
     private void buttonGenerateWeights_Click(object sender, EventArgs e)
@@ -124,6 +124,7 @@ public partial class zad1 : Form
             textOutput.Text = $"Zapisano wagi do pliku {saveFileDialog1.FileName}";
         }
     }
+
     private void DisableInputs(bool disable)
     {
         textBoxLowerBound.Enabled = !disable;
