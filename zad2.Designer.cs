@@ -95,7 +95,7 @@ partial class zad2
         textBoxUpperBound.Name = "textBoxUpperBound";
         textBoxUpperBound.Size = new System.Drawing.Size(38, 27);
         textBoxUpperBound.TabIndex = 6;
-        textBoxUpperBound.Text = "10";
+        textBoxUpperBound.Text = "4";
         // 
         // label6
         // 
@@ -112,7 +112,7 @@ partial class zad2
         textBoxLowerBound.Name = "textBoxLowerBound";
         textBoxLowerBound.Size = new System.Drawing.Size(38, 27);
         textBoxLowerBound.TabIndex = 4;
-        textBoxLowerBound.Text = "-10";
+        textBoxLowerBound.Text = "-4";
         // 
         // label5
         // 

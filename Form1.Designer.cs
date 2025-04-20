@@ -42,7 +42,7 @@ partial class Form1
         buttonZadanie1.Name = "buttonZadanie1";
         buttonZadanie1.Size = new System.Drawing.Size(264, 84);
         buttonZadanie1.TabIndex = 0;
-        buttonZadanie1.Text = "Zadanie 1";
+        buttonZadanie1.Text = "Zadanie 1\r\nXOR";
         buttonZadanie1.UseVisualStyleBackColor = true;
         buttonZadanie1.Click += buttonZadanie1_Click;
         // 
@@ -53,7 +53,7 @@ partial class Form1
         buttonZadanie2.Name = "buttonZadanie2";
         buttonZadanie2.Size = new System.Drawing.Size(264, 84);
         buttonZadanie2.TabIndex = 1;
-        buttonZadanie2.Text = "Zadanie 2";
+        buttonZadanie2.Text = "Zadanie 2\r\nXOR + NOR";
         buttonZadanie2.UseVisualStyleBackColor = true;
         buttonZadanie2.Click += buttonZadanie2_Click;
         // 
@@ -73,7 +73,7 @@ partial class Form1
         buttonZadanie3.Name = "buttonZadanie3";
         buttonZadanie3.Size = new System.Drawing.Size(264, 84);
         buttonZadanie3.TabIndex = 4;
-        buttonZadanie3.Text = "Zadanie 3";
+        buttonZadanie3.Text = "Zadanie 3\r\nSUMATOR";
         buttonZadanie3.UseVisualStyleBackColor = true;
         buttonZadanie3.Click += buttonZadanie3_Click;
         // 
