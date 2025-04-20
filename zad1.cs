@@ -48,6 +48,8 @@ public partial class zad1 : Form
     private void buttonTrainNetwork_Click(object sender, EventArgs e)
     {
         iterations = int.Parse(textIterations.Text);
+        neuralNetwork.learningParamB = double.Parse(textParamB.Text);
+        neuralNetwork.learningParamU = double.Parse(textParamU.Text);
         textOutput.Text = null;
         for (int i = 0; i < iterations; i++)
         {

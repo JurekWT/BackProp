@@ -47,6 +47,7 @@ partial class zad1
         buttonTrainNetwork = new System.Windows.Forms.Button();
         saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
         openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+        buttonGenerateWeights = new System.Windows.Forms.Button();
         groupBox1.SuspendLayout();
         groupBox2.SuspendLayout();
         SuspendLayout();
@@ -69,6 +70,7 @@ partial class zad1
         // 
         // groupBox2
         // 
+        groupBox2.Controls.Add(buttonGenerateWeights);
         groupBox2.Controls.Add(buttonSaveWeights);
         groupBox2.Controls.Add(buttonLoadWeights);
         groupBox2.Location = new System.Drawing.Point(12, 191);
@@ -80,18 +82,18 @@ partial class zad1
         // 
         // buttonSaveWeights
         // 
-        buttonSaveWeights.Location = new System.Drawing.Point(10, 105);
+        buttonSaveWeights.Location = new System.Drawing.Point(9, 139);
         buttonSaveWeights.Name = "buttonSaveWeights";
-        buttonSaveWeights.Size = new System.Drawing.Size(170, 49);
+        buttonSaveWeights.Size = new System.Drawing.Size(170, 30);
         buttonSaveWeights.TabIndex = 1;
         buttonSaveWeights.Text = "Zapisz";
         buttonSaveWeights.UseVisualStyleBackColor = true;
         // 
         // buttonLoadWeights
         // 
-        buttonLoadWeights.Location = new System.Drawing.Point(9, 50);
+        buttonLoadWeights.Location = new System.Drawing.Point(9, 103);
         buttonLoadWeights.Name = "buttonLoadWeights";
-        buttonLoadWeights.Size = new System.Drawing.Size(170, 49);
+        buttonLoadWeights.Size = new System.Drawing.Size(170, 30);
         buttonLoadWeights.TabIndex = 0;
         buttonLoadWeights.Text = "Wczytaj";
         buttonLoadWeights.UseVisualStyleBackColor = true;
@@ -198,6 +200,15 @@ partial class zad1
         openFileDialog1.FileName = "openFileDialog1";
         openFileDialog1.Filter = "pliki json|*.json";
         // 
+        // buttonGenerateWeights
+        // 
+        buttonGenerateWeights.Location = new System.Drawing.Point(9, 39);
+        buttonGenerateWeights.Name = "buttonGenerateWeights";
+        buttonGenerateWeights.Size = new System.Drawing.Size(170, 30);
+        buttonGenerateWeights.TabIndex = 2;
+        buttonGenerateWeights.Text = "Generuj nowe";
+        buttonGenerateWeights.UseVisualStyleBackColor = true;
+        // 
         // zad1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -219,6 +230,8 @@ partial class zad1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button buttonGenerateWeights;
 
     private System.Windows.Forms.GroupBox groupBox2;
 
